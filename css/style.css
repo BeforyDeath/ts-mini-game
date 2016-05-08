@@ -1,0 +1,21 @@
+.block{
+    display: inline-block;
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    margin: 0 2px;
+    padding: 0;
+    background: url(../img/ico50.png);
+}
+.state_0{
+    background-position: 0 0;
+}
+.state_1{
+    background-position: 0 50px;
+}
+.state_0:hover{
+    background: url(../img/ico50a.png) 0 0;
+}
+.state_1:hover{
+    background: url(../img/ico50a.png) 0 50px;
+}
