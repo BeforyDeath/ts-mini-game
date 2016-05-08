@@ -2,6 +2,7 @@
 
 class Game {
     level:number;
+    list:number[] = [];
 
     constructor(level:number = 4) {
         this.level = level;
@@ -33,32 +34,23 @@ class Game {
         var row = parseInt(block.id[0]);
         var col = parseInt(block.id[1]);
 
+        this.list = [];
         for (var cell = 1; cell < this.level + 1; cell++) {
-
-            var id = this.up(row, col, cell);
-            if (id) {
-                block = document.getElementById(id);
-                this.toggle(block);
-            }
-
-            var id = this.right(row, col, cell);
-            if (id) {
-                block = document.getElementById(id);
-                this.toggle(block);
-            }
-
-            var id = this.down(row, col, cell);
-            if (id) {
-                block = document.getElementById(id);
-                this.toggle(block);
-            }
-
-            var id = this.left(row, col, cell);
-            if (id) {
-                block = document.getElementById(id);
-                this.toggle(block);
-            }
+            this.up(row, col, cell);
+            this.right(row, col, cell);
+            this.down(row, col, cell);
+            this.left(row, col, cell);
         }
+
+        let _self = this;
+        for (let i in this.list) {
+            setTimeout(function () {
+                var id = _self.list[i];
+                block = document.getElementById(id);
+                _self.toggle(block);
+            }, 30 * i)
+        }
+
     };
 
     toggle = (block) => {
@@ -69,28 +61,24 @@ class Game {
         block.classList.toggle("state_1");
     };
 
-    down = (row, col, cell):string => {
+    down = (row, col, cell) => {
         var n = (row) + cell;
-        if (n < (this.level + 1)) return '' + n + col;
-        return '';
+        if (n < (this.level + 1)) this.list.push('' + n + col);
     };
 
-    up = (row, col, cell):string => {
+    up = (row, col, cell) => {
         var n = (row) - cell;
-        if (n > 0) return '' + n + col;
-        return '';
+        if (n > 0) this.list.push('' + n + col);
     };
 
-    left = (row, col, cell):string => {
+    left = (row, col, cell) => {
         var n = (col) - cell;
-        if (n > 0) return '' + row + n;
-        return '';
+        if (n > 0) this.list.push('' + row + n);
     };
 
-    right = (row, col, cell):string => {
+    right = (row, col, cell) => {
         var n = (col) + cell;
-        if (n < (this.level + 1)) return '' + row + n;
-        return '';
+        if (n < (this.level + 1)) this.list.push('' + row + n);
     };
 
 
