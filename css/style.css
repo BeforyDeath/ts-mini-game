@@ -1,4 +1,4 @@
-.block{
+.block {
     display: inline-block;
     cursor: pointer;
     height: 50px;
@@ -6,8 +6,8 @@
     margin: 0 2px;
     padding: 0;
     background: url(../img/ico50.png);
-    transition-property: background-position;
-    transition-duration: 100ms;
+    /*transition-property: background-position;*/
+    /*transition-duration: 100ms;*/
 }
 .state_0{
     background-position: 0 0;
